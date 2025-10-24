@@ -1,66 +1,35 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from "next/link";
+import style from "./styles/style.css";
+import mediaquery from "./styles/mediaquery.css";
 
-export default function Home() {
+async function getPosts() { 
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts', {
+    next: { revalidate: 60 }
+  });
+  
+  if (!res.ok) {
+    throw new Error('Failed to fetch posts');
+  }
+  
+  const posts = await res.json();
+  return posts.slice(0, 10);
+}
+
+export default async function Home() {
+  const posts = await getPosts();
+  
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div id="home">
+      <h1>BLOG APP</h1>
+      <div className="post-container">
+      {posts.map(post => (
+        <div className="card" key={post.id}>
+          <h3>{post.id}. {post.title}</h3>
+          <p>{post.body}</p>
+          <Link href={`/posts/${post.id}`}>READ MORE</Link>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      ))}
+      </div>
     </div>
   );
 }

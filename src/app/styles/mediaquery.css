@@ -1,0 +1,36 @@
+@media screen and (max-width: 1750px) {
+}
+
+@media screen and (max-width: 1450px) {
+}
+
+@media screen and (max-width: 1024px) {
+    .post-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 991px) {
+}
+
+@media screen and (max-width: 768px) {
+    #home {
+        align-items: center;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    .post-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+      .card {
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+}

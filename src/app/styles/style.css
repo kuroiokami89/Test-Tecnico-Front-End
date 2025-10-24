@@ -1,0 +1,65 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+h1 {
+    font-size: 6rem;
+    text-align: center;
+}
+
+h3 {
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+}
+
+a {
+    color : white;
+    background-color: #1a1a1a;
+    padding: 10px 20px;
+}
+
+#home {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* POST CONTAINER STYLE */
+.post-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* POST CARD STYLE */
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  border: 1px solid #e0e0e0;
+  padding: 24px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+  line-height: 1.4;
+}
+
+.card p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+} 
