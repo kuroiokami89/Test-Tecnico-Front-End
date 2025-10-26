@@ -62,4 +62,16 @@ a {
   font-size: 16px;
   color: #666;
   line-height: 1.6;
-} 
+}
+
+/* POST DETAIL CONTAINER STYLE */
+.post-detail-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  background: #f9f9f9;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

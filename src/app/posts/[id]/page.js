@@ -1,14 +1,19 @@
 async function getPost(id) {
+  console.log(`Fetching post with ID: ${id}`);
   try {
     const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
-      cache: 'force-cache'
+      cache: 'no-cache'
     });
+    console.log(`Fetch response status: ${res.status}`);
     
     if (!res.ok) {
+      console.log('Response not ok, returning null');
       return null;
     }
     
-    return res.json();
+    const post = await res.json();
+    console.log('Fetched post:', post);
+    return post;
   } catch (error) {
     console.error('Error fetching post:', error);
     return null;
@@ -30,23 +35,26 @@ export async function generateStaticParams() {
 }
 
 export default async function PostPage({ params }) {
-  const post = await getPost(params.id);
+  const resolvedParams = await params;
+  console.log('PostPage params:', resolvedParams);
+  const post = await getPost(resolvedParams.id);
+  console.log('Fetched post:', post);
   
   if (!post) {
     return (
-      <div>
-        <h1>Post not found</h1>
-        <p>The post you're looking for doesn't exist.</p>
-        <a href="/">← Back to home</a>
+      <div className="post-detail-container">
+        <div className="card" style={{ textAlign: 'center' }}>
+          <h1>Post not found</h1>
+          <p>The post you're looking for doesn't exist.</p>
+          <a href="/" style={{ marginTop: '20px', display: 'inline-block' }}>← Back to home</a>
+        </div>
       </div>
     );
   }
   
   return (
-    <div>
-      <a href="/">← Back to all posts</a>
-      
-      <article>
+    <div className="post-detail-container">
+      <article className="card">
         <h1>{post.title}</h1>
         <p>{post.body}</p>
         <hr />
@@ -55,6 +63,7 @@ export default async function PostPage({ params }) {
           <p><strong>User ID:</strong> {post.userId}</p>
         </div>
       </article>
+      <a href="/" style={{ marginTop: '20px', display: 'inline-block' }}>← Back to all posts</a>
     </div>
   );
 }
