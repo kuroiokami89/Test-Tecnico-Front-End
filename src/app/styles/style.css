@@ -9,69 +9,222 @@
   -moz-box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #0a0a0a;
+  color: #e0e0e0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+/* Headings & basics */
 h1 {
-    font-size: 6rem;
-    text-align: center;
+  font-size: 6rem;
+  text-align: center;
+  color: #ffffff;
+  font-weight: 700;
 }
 
 h3 {
-    border-bottom: 1px solid white;
-    border-top: 1px solid white;
+  color: #ffffff;
+  border-bottom: 1px solid #2a2a2a;
+  border-top: 1px solid #2a2a2a;
+  padding: 0.4rem 0;
 }
 
+/* Links */
 a {
-    color : white;
-    background-color: #1a1a1a;
-    padding: 10px 20px;
+  color: #6db3f2;
+  background-color: transparent; /* no heavy bg unless needed */
+  padding: 10px 20px;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
 }
 
+a:hover,
+a:focus {
+  background-color: #1e3a5f;
+  color: #8dc5ff;
+}
+
+/* Home layout */
 #home {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 2rem;
 }
 
 /* POST CONTAINER STYLE */
 .post-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
-/* POST CARD STYLE */
+/* POST CARD STYLE (dark theme) */
 .card {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border: 1px solid #2a2a2a;
   padding: 24px;
   margin-bottom: 20px;
   border-radius: 12px;
-  background: #ffffff;
+  background: #1a1a1a;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative;
+  overflow: hidden;
 }
 
+.card:hover {
+  transform: translateY(-4px);
+  border-color: #3a3a3a;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+}
+
+/* card heading & text */
 .card h3 {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 12px;
-  color: #1a1a1a;
+  color: #ffffff;
   line-height: 1.4;
 }
 
 .card p {
   font-size: 16px;
-  color: #666;
+  color: #aaa;
   line-height: 1.6;
 }
 
-/* POST DETAIL CONTAINER STYLE */
+/* Post meta, tags and footer (added, following original dark style) */
+.tags {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.tag {
+  background-color: #252525;
+  color: #999;
+  padding: 0.35rem 0.8rem;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  border: 1px solid #333;
+  font-weight: 500;
+}
+
+/* Post footer inside card */
+.post-footer {
+  padding-top: 1rem;
+  border-top: 1px solid #2a2a2a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.post-date {
+  font-size: 0.85rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.read-more {
+  background: none;
+  border: none;
+  color: #6db3f2;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: background 0.25s, color 0.25s;
+}
+
+.read-more:hover {
+  background-color: #1e3a5f;
+  color: #8dc5ff;
+}
+
+/* POST DETAIL CONTAINER STYLE (dark variant) */
 .post-detail-container {
   padding: 20px;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
-  background: #f9f9f9;
+  background: #0f0f10;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  border-radius: 10px;
+  border: 1px solid #232323;
+}
+
+/* Utility: empty state / loading / error (from original) */
+.loading-container,
+.error-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0a0a0a;
+}
+
+.loading-container p {
+  color: #888;
+  font-size: 1.2rem;
+}
+
+.error-box {
+  padding: 2rem;
+  background-color: #1a1a1a;
+  border: 2px solid #ff4444;
+  border-radius: 12px;
+  max-width: 400px;
+}
+
+.error-box h2 {
+  color: #ff4444;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.error-box p {
+  color: #ccc;
+}
+
+.error-box button {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.error-box button:hover {
+  background: #ff6666;
+}
+
+/* Accessibility helpers */
+button:focus,
+a:focus {
+  outline: 2px solid rgba(109,179,242,0.25);
+  outline-offset: 2px;
 }

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import style from "./styles/style.css";
-import mediaquery from "./styles/mediaquery.css";
+import "./styles/style.css";
+import "./styles/mediaquery.css";
 
 async function getPosts() { 
   const res = await fetch('https://jsonplaceholder.typicode.com/posts', {
