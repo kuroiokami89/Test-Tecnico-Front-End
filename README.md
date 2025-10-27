@@ -4,6 +4,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 Before running the project, make sure to install all dependencies:
 
+```bash
 npm install
 # or
 yarn install
@@ -11,6 +12,7 @@ yarn install
 pnpm install
 # or
 bun install
+```
 
 First, run the development server:
 
